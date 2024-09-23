@@ -1,28 +1,37 @@
 package com.fresh.coding.patrimoineapi.controllers;
 
 import com.fresh.coding.patrimoineapi.model.Patrimoine;
-import lombok.NoArgsConstructor;
+import com.fresh.coding.patrimoineapi.services.PatrimoineService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
-@RestControllerAdvice
-@NoArgsConstructor
+@RestController
 @RequestMapping("/patrimoines")
 public class PatrimoineController {
 
-    @PutMapping("/{id}")
-    public List<Patrimoine> createOrUpdatePatrimoine(
-            @PathVariable(required = false, name = "id") String name,
+    private final PatrimoineService patrimoineService;
+
+    public PatrimoineController(PatrimoineService patrimoineService) {
+        this.patrimoineService = patrimoineService;
+    }
+    @PutMapping
+    public Patrimoine savePatrimoine(
             @RequestBody Patrimoine patrimoine
     ) {
-        return List.of();
+        return patrimoineService.create(patrimoine);
     }
 
-    @GetMapping
-    public Patrimoine findById(
+    @PutMapping("/{name}")
+    public Patrimoine updatePatrimoine(
+            @PathVariable(required = false) String name ,
             @RequestBody Patrimoine patrimoine
     ) {
-        return null;
+      return patrimoineService.update(name, patrimoine);
+    }
+
+
+    @GetMapping("/{name}")
+    public Patrimoine findPatrimoineByName(@PathVariable String name)  {
+        return patrimoineService.findByName(name);
     }
 }
