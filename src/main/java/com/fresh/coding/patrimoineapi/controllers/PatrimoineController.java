@@ -17,10 +17,9 @@ public class PatrimoineController {
 
     @PutMapping("/{id}")
     public Patrimoine updatePatrimoine(
-            @PathVariable(name = "id") String name,
-            @RequestBody Patrimoine patrimoine
+            @PathVariable(name = "id") String name
     ) {
-        return patrimoineService.save(name, patrimoine);
+        return patrimoineService.save(name);
     }
 
     @GetMapping("/{id}")

@@ -49,7 +49,8 @@ public class PatrimoineServiceImpl implements PatrimoineService {
 
     @SneakyThrows
     @Override
-    public Patrimoine save(String name, Patrimoine patrimoine) {
+    public Patrimoine save(String name) {
+        var patrimoine = new Patrimoine(name, LocalDateTime.now());
         var existingPatrimoine = findByName(name);
         if (existingPatrimoine != null) {
             existingPatrimoine.setDerniereModification(LocalDateTime.now());
