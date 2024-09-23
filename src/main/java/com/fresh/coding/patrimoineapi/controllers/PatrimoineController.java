@@ -14,21 +14,14 @@ public class PatrimoineController {
     public PatrimoineController(PatrimoineService patrimoineService) {
         this.patrimoineService = patrimoineService;
     }
-    @PutMapping
-    public Patrimoine savePatrimoine(
-            @RequestBody Patrimoine patrimoine
-    ) {
-        return patrimoineService.create(patrimoine);
-    }
 
     @PutMapping("/{name}")
     public Patrimoine updatePatrimoine(
-            @PathVariable(required = false) String name ,
+            @PathVariable String name,
             @RequestBody Patrimoine patrimoine
     ) {
-      return patrimoineService.update(name, patrimoine);
+        return patrimoineService.save(name, patrimoine);
     }
-
 
     @GetMapping("/{name}")
     public Patrimoine findPatrimoineByName(@PathVariable String name)  {
