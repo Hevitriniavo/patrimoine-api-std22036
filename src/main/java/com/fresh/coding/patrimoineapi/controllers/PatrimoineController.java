@@ -15,16 +15,16 @@ public class PatrimoineController {
         this.patrimoineService = patrimoineService;
     }
 
-    @PutMapping("/{name}")
+    @PutMapping("/{id}")
     public Patrimoine updatePatrimoine(
-            @PathVariable String name,
+            @PathVariable(name = "id") String name,
             @RequestBody Patrimoine patrimoine
     ) {
         return patrimoineService.save(name, patrimoine);
     }
 
-    @GetMapping("/{name}")
-    public Patrimoine findPatrimoineByName(@PathVariable String name)  {
+    @GetMapping("/{id}")
+    public Patrimoine findPatrimoineByName(@PathVariable(name = "id") String name)  {
         return patrimoineService.findByName(name);
     }
 }
